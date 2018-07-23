@@ -1,4 +1,4 @@
-package main.scala.partone
+package partone.chaptertwo
 
 import scala.annotation.tailrec
 

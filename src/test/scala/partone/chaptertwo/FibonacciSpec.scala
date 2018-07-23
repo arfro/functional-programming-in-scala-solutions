@@ -1,6 +1,5 @@
-package test.scala.partone
+package partone.chaptertwo
 
-import main.scala.partone.Fibonacci
 import org.scalatest._
 
 // exercise 2.1
