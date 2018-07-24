@@ -1,14 +1,35 @@
 package partone.chapterthree
 
+import scala.annotation.tailrec
+
 sealed trait CustomList[+A]
 case object Nil extends CustomList[Nothing]
 case class Cons[+A](head: A, tail: CustomList[A]) extends CustomList[A]
 
-object CustomList{
+object CustomList {
 
   def apply[A](as: A*): CustomList[A] =
     if (as.isEmpty) Nil
     else Cons(as.head, apply(as.tail: _*))
+
+  def foldRight[A, B](as: CustomList[A], z: B)(f: (A, B) => B): B = {
+    as match {
+      case Nil => z
+      case Cons(x, xs) => f(x, foldRight(xs, z)(f))
+    }
+  }
+
+  //exercise 3.10
+  def foldLeft[A, B](as: CustomList[A], z: B)(f: (A, B) => B): B = {
+    @tailrec
+    def loop(as: CustomList[A], accum: B): B = {
+      as match {
+        case Nil => accum
+        case Cons(x, xs) => loop(xs, f(accum, x))
+      }
+    }
+    loop(as, z)
+  }
 
   //exercise 3.2
   def removeTail[A](list: CustomList[A]): CustomList[A] = {
@@ -30,22 +51,33 @@ object CustomList{
   def drop[A](list: CustomList[A], n: Int): CustomList[A] = {
     if (n == 0) list
     else
-    list match {
-      case Nil => Nil
-      case Cons(_, tail) if (n > 1) => drop(removeTail(list), n-1)
-      case Cons(_, tail) if (n <= 1) => tail
-    }
+      list match {
+        case Nil => Nil
+        case Cons(_, tail) if (n > 1) => drop(removeTail(list), n - 1)
+        case Cons(_, tail) if (n <= 1) => tail
+      }
   }
 
 
   //exercise 3.5
   def dropWhile[A](list: CustomList[A])(f: A => Boolean): CustomList[A] = {
-      list match {
-        case Nil => Nil
-        case Cons(head, tail) if (f(head)) => dropWhile(drop(list, 1))(f)
-        case Cons(head, tail) => Cons(head, tail)
-      }
+    list match {
+      case Nil => Nil
+      case Cons(head, tail) if (f(head)) => dropWhile(drop(list, 1))(f)
+      case Cons(head, tail) => Cons(head, tail)
+    }
   }
 
+
+  //exercise 3.9
+  def lengthFoldRight[A](as: CustomList[A]): Int = {
+    foldRight(as, 0)((_, sum) => sum + 1)
+  }
+
+  //exercise 3.11
+  def sum[A](as: CustomList[A]): Int = {
+    // TODO: fix this 
+    foldLeft(as, 0)(_ + _)
+  }
 
 }
