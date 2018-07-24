@@ -38,4 +38,14 @@ object CustomList{
   }
 
 
+  //exercise 3.5
+  def dropWhile[A](list: CustomList[A], f: A => Boolean): CustomList[A] = {
+      list match {
+        case Nil => Nil
+        case Cons(head, tail) if (f(head)) => dropWhile(drop(list, 1), f)
+        case Cons(head, tail) => Cons(head, tail)
+      }
+  }
+
+
 }
