@@ -11,7 +11,7 @@ class FibonacciSpec extends FlatSpec with Matchers {
   }
 
   "Fibonacci nr function" should "calculate correctly for 0" in {
-    Fibonacci.fib(0) shouldBe 1
+    Fibonacci.fib(1) shouldBe 1
   }
 
 }
