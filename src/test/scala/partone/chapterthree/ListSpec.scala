@@ -42,6 +42,7 @@ class ListSpec extends FlatSpec with Matchers {
   }
 
   "List dropWhile" should "drop all first 4s" in {
-    CustomList.dropWhile(Cons(4, Cons(4, Cons(3, Cons(4, Nil)))), (x: Int) => x == 4 ) shouldBe Cons(3, Cons(4, Nil))
+    // if the function dropWhile wasn't curried then we would have to specify x type
+    CustomList.dropWhile(Cons(4, Cons(4, Cons(3, Cons(4, Nil)))))(x => x == 4 ) shouldBe Cons(3, Cons(4, Nil))
   }
 }
