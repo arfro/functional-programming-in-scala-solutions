@@ -113,4 +113,10 @@ object CustomList {
   def doubleToString(as: CustomList[Double]): CustomList[String] = {
     foldRight(as, CustomList[String]())((tail, x) => Cons(tail.toString, x))
   }
+
+  //exercise 3.18
+  def map[A, B](as: CustomList[A])(f: A => B): CustomList[B] = {
+    foldRight(as, CustomList[B]())((tail, x) => Cons(f(tail), x))
+  }
+
 }

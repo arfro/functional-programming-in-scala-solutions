@@ -97,5 +97,14 @@ class ListSpec extends FlatSpec with Matchers {
     CustomList.doubleToString(Cons(1.0, Cons(2.0, Cons(3.0, Cons(4.0, Nil))))) shouldBe (Cons("1.0", Cons("2.0", Cons("3.0", Cons("4.0", Nil)))))
   }
 
+  "Map function" should "returns 1 2 3 4 doubled" in {
+    // if the function dropWhile wasn't curried then we would have to specify x type
+    CustomList.map(Cons(1.0, Cons(2.0, Cons(3.0, Cons(4.0, Nil)))))(_.toString) shouldBe (Cons("1.0", Cons("2.0", Cons("3.0", Cons("4.0", Nil)))))
+  }
 
+  "Map function" should "returns 1 2 3 4 doubled" in {
+    // if the function dropWhile wasn't curried then we would have to specify x type
+    CustomList.map(Cons(1.0, Cons(2.0, Cons(3.0, Cons(4.0, Nil)))))(_*3) shouldBe (Cons(3.0, Cons(6.0, Cons(9.0, Cons(12.0, Nil)))))
+  }
+  
 }
