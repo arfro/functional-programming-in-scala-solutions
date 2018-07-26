@@ -61,8 +61,18 @@ class ListSpec extends FlatSpec with Matchers {
     CustomList.lengthFoldLeft(Cons(4, Cons(4, Cons(3, Cons(4, Nil))))) shouldBe 4
   }
 
-  "List length - folf left" should "return 0 for size 0" in {
+  "List length - fold left" should "return 0 for size 0" in {
     // if the function dropWhile wasn't curried then we would have to specify x type
     CustomList.lengthFoldLeft(Nil) shouldBe 0
+  }
+
+  "List reverse - fold left" should "returns 4 3 2 1 for 1 2 3 4" in {
+    // if the function dropWhile wasn't curried then we would have to specify x type
+    CustomList.listReverse((Cons(1, Cons(2, Cons(3, Cons(4, Nil)))))) shouldBe (Cons(4, Cons(3, Cons(2, Cons(1, Nil)))))
+  }
+
+  "List reverse - fold left" should "returns empty list for emtpty list" in {
+    // if the function dropWhile wasn't curried then we would have to specify x type
+    CustomList.listReverse(Nil) shouldBe Nil
   }
 }

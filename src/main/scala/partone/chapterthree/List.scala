@@ -89,4 +89,9 @@ object CustomList {
     foldLeft(as, 1)(_ * _)
   }
 
+  //exercise 3.12
+  def listReverse[A](as: CustomList[A]): CustomList[A] = {
+    foldLeft(as, CustomList[A]())((x, head) => Cons(head, x))
+  }
+
 }
