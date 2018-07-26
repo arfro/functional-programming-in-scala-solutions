@@ -94,9 +94,23 @@ object CustomList {
     foldLeft(as, CustomList[A]())((x, head) => Cons(head, x))
   }
 
-  //exercise 3.15
+  //exercise 3.14
   def append[A](as: CustomList[A], elem: CustomList[A]): CustomList[A] = {
-    foldRight(as, elem)((x, head) => Cons(x, head))
+    foldRight(as, elem)((tail, x) => Cons(tail, x))
   }
 
+  //exercise 3.15
+  def concat[A](as1: CustomList[A], as2: CustomList[A]): CustomList[A] = {
+    foldLeft(as2, CustomList[A]())((x, head) => append(as1, Cons(head, x)))
+  }
+
+  //exercise 3.16
+  def addOne(as: CustomList[Int]): CustomList[Int] = {
+    foldRight(as, CustomList[Int]())((tail, x) => Cons(tail + 1, x))
+  }
+
+  //exercise 3.17
+  def doubleToString(as: CustomList[Double]): CustomList[String] = {
+    foldRight(as, CustomList[String]())((tail, x) => Cons(tail.toString, x))
+  }
 }

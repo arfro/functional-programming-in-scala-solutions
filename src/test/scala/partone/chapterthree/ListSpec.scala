@@ -81,4 +81,21 @@ class ListSpec extends FlatSpec with Matchers {
     CustomList.append((Cons(1, Cons(2, Cons(3, Cons(4, Nil))))), Cons(5, Nil)) shouldBe (Cons(1, Cons(2, Cons(3, Cons(4, Cons(5, Nil))))))
   }
 
+
+  "Two lists append - fold left" should "returns 1 2 3 4 for 1 2 & 3 4" in {
+    // if the function dropWhile wasn't curried then we would have to specify x type
+    CustomList.append((Cons(1, Cons(2, Nil))), Cons(3, Cons(4, Nil))) shouldBe (Cons(1, Cons(2, Cons(3, Cons(4, Nil)))))
+  }
+
+  "Add one function" should "returns 2 3 4 5 for 1 2 3 4" in {
+    // if the function dropWhile wasn't curried then we would have to specify x type
+    CustomList.addOne(Cons(1, Cons(2, Cons(3, Cons(4, Nil))))) shouldBe (Cons(2, Cons(3, Cons(4, Cons(5, Nil)))))
+  }
+
+  "Double to string function" should "returns 1 2 3 4 as strings for 1 2 3 4 in ints" in {
+    // if the function dropWhile wasn't curried then we would have to specify x type
+    CustomList.doubleToString(Cons(1.0, Cons(2.0, Cons(3.0, Cons(4.0, Nil))))) shouldBe (Cons("1.0", Cons("2.0", Cons("3.0", Cons("4.0", Nil)))))
+  }
+
+
 }
