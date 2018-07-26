@@ -46,13 +46,23 @@ class ListSpec extends FlatSpec with Matchers {
     CustomList.dropWhile(Cons(4, Cons(4, Cons(3, Cons(4, Nil)))))(x => x == 4 ) shouldBe Cons(3, Cons(4, Nil))
   }
 
-  "List length" should "return 4 for size 4" in {
+  "List length - fold right" should "return 4 for size 4" in {
     // if the function dropWhile wasn't curried then we would have to specify x type
     CustomList.lengthFoldRight(Cons(4, Cons(4, Cons(3, Cons(4, Nil))))) shouldBe 4
   }
 
-  "List length" should "return 0 for size 0" in {
+  "List length - folf right" should "return 0 for size 0" in {
     // if the function dropWhile wasn't curried then we would have to specify x type
     CustomList.lengthFoldRight(Nil) shouldBe 0
+  }
+
+  "List length - fold left" should "return 4 for size 4" in {
+    // if the function dropWhile wasn't curried then we would have to specify x type
+    CustomList.lengthFoldLeft(Cons(4, Cons(4, Cons(3, Cons(4, Nil))))) shouldBe 4
+  }
+
+  "List length - folf left" should "return 0 for size 0" in {
+    // if the function dropWhile wasn't curried then we would have to specify x type
+    CustomList.lengthFoldLeft(Nil) shouldBe 0
   }
 }

@@ -20,7 +20,7 @@ object CustomList {
   }
 
   //exercise 3.10
-  def foldLeft[A, B](as: CustomList[A], z: B)(f: (A, B) => B): B = {
+  def foldLeft[A, B](as: CustomList[A], z: B)(f: (B, A) => B): B = {
     @tailrec
     def loop(as: CustomList[A], accum: B): B = {
       as match {
@@ -75,9 +75,18 @@ object CustomList {
   }
 
   //exercise 3.11
-  def sum[A](as: CustomList[A]): Int = {
-    // TODO: fix this 
+  def lengthFoldLeft[A](as: CustomList[A]): Int = {
+    foldLeft(as, 0)((sum, _) => sum + 1)
+  }
+
+  //exercise 3.11
+  def sum(as: CustomList[Int]): Int = {
     foldLeft(as, 0)(_ + _)
+  }
+
+  //exercise 3.11
+  def product(as: CustomList[Int]): Int = {
+    foldLeft(as, 1)(_ * _)
   }
 
 }
