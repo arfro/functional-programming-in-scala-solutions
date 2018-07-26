@@ -75,4 +75,10 @@ class ListSpec extends FlatSpec with Matchers {
     // if the function dropWhile wasn't curried then we would have to specify x type
     CustomList.listReverse(Nil) shouldBe Nil
   }
+
+  "List append - fold left" should "returns 1 2 3 4 5 for 1 2 3 4" in {
+    // if the function dropWhile wasn't curried then we would have to specify x type
+    CustomList.append((Cons(1, Cons(2, Cons(3, Cons(4, Nil))))), Cons(5, Nil)) shouldBe (Cons(1, Cons(2, Cons(3, Cons(4, Cons(5, Nil))))))
+  }
+
 }

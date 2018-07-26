@@ -94,4 +94,9 @@ object CustomList {
     foldLeft(as, CustomList[A]())((x, head) => Cons(head, x))
   }
 
+  //exercise 3.15
+  def append[A](as: CustomList[A], elem: CustomList[A]): CustomList[A] = {
+    foldRight(as, elem)((x, head) => Cons(x, head))
+  }
+
 }
