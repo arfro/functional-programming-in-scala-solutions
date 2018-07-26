@@ -119,4 +119,19 @@ object CustomList {
     foldRight(as, CustomList[B]())((tail, x) => Cons(f(tail), x))
   }
 
+  //exercise 3.19
+  def filter[A](as: CustomList[A])(f: A => Boolean): CustomList[A] = {
+    foldLeft(as, CustomList[A]())((x, head) =>
+      if(f(head)) Cons(head, x)
+      else x
+    )
+  }
+
+  //exercise 3.20
+  def flatMap[A, B](as: CustomList[A])(f: A => CustomList[B]): CustomList[B] ={
+    //TODO: finish
+    foldLeft(as, CustomList[B]())((x, head) => f(head))
+  }
+
+
 }

@@ -97,7 +97,7 @@ class ListSpec extends FlatSpec with Matchers {
     CustomList.doubleToString(Cons(1.0, Cons(2.0, Cons(3.0, Cons(4.0, Nil))))) shouldBe (Cons("1.0", Cons("2.0", Cons("3.0", Cons("4.0", Nil)))))
   }
 
-  "Map function" should "returns 1 2 3 4 doubled" in {
+  "Map function" should "returns 1 2 3 4 to string" in {
     // if the function dropWhile wasn't curried then we would have to specify x type
     CustomList.map(Cons(1.0, Cons(2.0, Cons(3.0, Cons(4.0, Nil)))))(_.toString) shouldBe (Cons("1.0", Cons("2.0", Cons("3.0", Cons("4.0", Nil)))))
   }
@@ -106,5 +106,11 @@ class ListSpec extends FlatSpec with Matchers {
     // if the function dropWhile wasn't curried then we would have to specify x type
     CustomList.map(Cons(1.0, Cons(2.0, Cons(3.0, Cons(4.0, Nil)))))(_*3) shouldBe (Cons(3.0, Cons(6.0, Cons(9.0, Cons(12.0, Nil)))))
   }
-  
+
+  "Filter function" should "returns 2.0, 4.0 if filtering 1.0 2.0 3.0 4.0" in {
+    // if the function dropWhile wasn't curried then we would have to specify x type
+    CustomList.filter(Cons(1.0, Cons(2.0, Cons(3.0, Cons(4.0, Nil)))))(_ == 2.0) shouldBe Cons(2.0, Nil)
+  }
+
+
 }
