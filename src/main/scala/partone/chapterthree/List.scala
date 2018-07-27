@@ -53,8 +53,8 @@ object CustomList {
     else
       list match {
         case Nil => Nil
-        case Cons(_, tail) if (n > 1) => drop(removeTail(list), n - 1)
-        case Cons(_, tail) if (n <= 1) => tail
+        case Cons(_, tail) if n > 1 => drop(removeTail(list), n - 1)
+        case Cons(_, tail) if n <= 1 => tail
       }
   }
 
@@ -63,7 +63,7 @@ object CustomList {
   def dropWhile[A](list: CustomList[A])(f: A => Boolean): CustomList[A] = {
     list match {
       case Nil => Nil
-      case Cons(head, tail) if (f(head)) => dropWhile(drop(list, 1))(f)
+      case Cons(head, tail) if f(head) => dropWhile(drop(list, 1))(f)
       case Cons(head, tail) => Cons(head, tail)
     }
   }
@@ -129,8 +129,10 @@ object CustomList {
 
   //exercise 3.20
   def flatMap[A, B](as: CustomList[A])(f: A => CustomList[B]): CustomList[B] ={
-    //TODO: finish
-    foldLeft(as, CustomList[B]())((x, head) => f(head))
+    as match {
+      case Nil => Nil
+      case Cons(h, t) => append(f(h), flatMap(t)(f))
+    }
   }
 
 
