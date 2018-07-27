@@ -112,5 +112,10 @@ class ListSpec extends FlatSpec with Matchers {
     CustomList.filter(Cons(1.0, Cons(2.0, Cons(3.0, Cons(4.0, Nil)))))(_ == 2.0) shouldBe Cons(2.0, Nil)
   }
 
+  "Flatmap function" should "returns  1 1 2 2 for 1 2" in {
+    // if the function dropWhile wasn't curried then we would have to specify x type
+    CustomList.flatMap(Cons(1, Cons(2, Nil)))(i => Cons(i, Cons(i, Nil))) shouldBe Cons(1, Cons(1, Cons(2, Cons(2, Nil))))
+  }
+
 
 }
