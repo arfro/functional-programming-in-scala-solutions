@@ -98,7 +98,6 @@ object CustomList {
   def append[A](as: CustomList[A], elem: CustomList[A]): CustomList[A] = {
     foldRight(as, elem)((tail, x) => Cons(tail, x))
   }
-  
 
   //exercise 3.15
   def concat[A](as1: CustomList[A], as2: CustomList[A]): CustomList[A] = {
