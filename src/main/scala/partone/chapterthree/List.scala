@@ -136,9 +136,5 @@ object CustomList {
     }
   }
 
-  //exercise 3.22
-  def addTwoLists[Int](as1: CustomList[Int], as2: CustomList[Int]): CustomList[Int] = {
-   
-  }
 
 }

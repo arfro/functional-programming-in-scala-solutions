@@ -10,7 +10,7 @@ class FibonacciSpec extends FlatSpec with Matchers {
     Fibonacci.fib(5) shouldBe 5
   }
 
-  "Fibonacci nr function" should "calculate correctly for 0" in {
+  it should "calculate correctly for 0" in {
     Fibonacci.fib(1) shouldBe 1
   }
 
