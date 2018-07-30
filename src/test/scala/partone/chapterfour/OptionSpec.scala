@@ -32,5 +32,17 @@ class OptionSpec extends FlatSpec with Matchers {
     Some(12).filter(_/3 == 6) shouldBe None
   }
 
+  "Option mean" should "return None for Nil" in {
+    Option.mean(Nil) shouldBe None
+  }
+  it should "return 2 for 2 2 2 " in {
+    Option.mean(List(2,2,2)) shouldBe Some(2)
+  }
+  "Option variance" should "return None for Nil" in {
+    Option.variance(Nil) shouldBe None
+  }
+  it should "return 2  for  5 5 5" in {
+    Option.variance(List(5, 5, 8)) shouldBe Some(2)
+  }
 
 }
