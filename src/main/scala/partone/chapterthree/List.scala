@@ -108,6 +108,7 @@ object CustomList {
   def addOne(as: CustomList[Int]): CustomList[Int] = {
     foldRight(as, CustomList[Int]())((tail, x) => Cons(tail + 1, x))
   }
+  
 
   //exercise 3.17
   def doubleToString(as: CustomList[Double]): CustomList[String] = {
