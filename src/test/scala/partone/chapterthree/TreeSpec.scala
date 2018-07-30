@@ -18,6 +18,19 @@ class TreeSpec extends FlatSpec with Matchers {
                                   )
                                 )),
                         right = Leaf(3))
+  val tree6ElemX2 = Branch(left = Branch(
+    left = Leaf(8),
+    right = Branch(
+      left = Branch(
+        left = Leaf(4),
+        right = Leaf(66)
+      ),
+      right = Branch(
+        left = Leaf(6),
+        right = Leaf(4)
+      )
+    )),
+    right = Leaf(6))
 
   "Tree size" should "return 2 for two elems in a tree" in {
     Tree.size(tree2Elem) shouldBe 2
@@ -34,5 +47,10 @@ class TreeSpec extends FlatSpec with Matchers {
   "Tree depth longest" should "return 33 for 4 3 33" in {
     Tree.depth(tree6Elem) shouldBe 4
   }
+
+  "Tree map" should "return all leaves multiplied by 2" in {
+    Tree.map(tree6Elem)(_ * 2) shouldBe tree6ElemX2
+  }
+
 
 }

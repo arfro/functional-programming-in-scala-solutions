@@ -38,4 +38,12 @@ object Tree{
     getLongest(tree, 0, 0)
   }
 
+  //exercise 3.28
+  def map[A, B](tree: Tree[A])(f: A => B): Tree[B] = {
+    tree match {
+      case Leaf(leaf) => Leaf(f(leaf))
+      case Branch(left, right) => Branch(map(left)(f), map(right)(f))
+    }
+  }
+
 }
