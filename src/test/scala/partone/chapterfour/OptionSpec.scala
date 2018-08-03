@@ -57,6 +57,20 @@ class OptionSpec extends FlatSpec with Matchers {
     Option.sequence(List(Some(3), Some(32))) shouldBe Some(List(3, 32))
   }
 
+  "Option sequence_1" should "return Some(4) for Some(1), Some(3)" in {
+    Option.sequence(List(Some(3), Some(32))) shouldBe Some(List(3, 32))
+  }
+
+  "Option traverse" should "return None for 6 32" in {
+    Option.traverse(List(6, 32))(failLargerThan10) shouldBe None
+  }
+
+  it should "return Some(30, 25) for 30 25 " in {
+    Option.traverse(List(30, 25))(failLargerThan10) shouldBe Some(List(30, 25))
+  }
 
   def fct(a: Int, b: Int): Int = a + b
+  def failLargerThan10(a: Int): Option[Int] =
+    if(a < 10) None
+    else Some(a)
 }

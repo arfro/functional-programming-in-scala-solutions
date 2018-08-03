@@ -65,4 +65,24 @@ object Option {
         )
     }
   }
+
+  //exercise 4.4
+  def sequence_1[A](a: List[Option[A]]): Option[List[A]] = {
+    a match {
+      case Nil => Some(Nil)
+      case h :: t => for {
+        hh <- h
+        x <- sequence(t)
+      } yield hh :: x
+    }
+  }
+
+  //exercise 4.5
+  def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] =
+    a match {
+      case Nil => Some(Nil)
+      case h::t => map2(f(h), traverse(t)(f))(_ :: _)
+    }
+
+
 }
