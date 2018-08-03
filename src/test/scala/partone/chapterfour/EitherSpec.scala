@@ -32,6 +32,14 @@ class EitherSpec extends FlatSpec with Matchers {
     Right("a").map2(Right("b"))(fctMap2) shouldBe Right("ab")
   }
 
+  "Either sequence" should "return Left(\"error\") for Left(\"error\"), Right(\"OK\")" in {
+    Either.sequence(List(Left("error"), Right("OK"))) shouldBe Left("error")
+  }
+
+  it should "return Left(\"error\") for Left(\"error\") & Right(\"a\")" in {
+    Either.sequence(List(Right("oki"), Right("OK"))) shouldBe Right(List("oki", "OK"))
+  }
+
 
   def fcOrElseOK: Either[String, String] = Right("actually.. its ok")
 
