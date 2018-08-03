@@ -45,4 +45,18 @@ class OptionSpec extends FlatSpec with Matchers {
     Option.variance(List(5, 5, 8)) shouldBe Some(2)
   }
 
+  "Option map2" should "return Some(4) for Some(1), Some(3)" in {
+    Option.map2(Some(3), Some(3))(fct) shouldBe Some(4)
+  }
+
+  it should "return None for None, Some(3)" in {
+    Option.map2(None, Some(3))(fct) shouldBe None
+  }
+
+  "Option sequence" should "return Some(4) for Some(1), Some(3)" in {
+    Option.sequence(List(Some(3), Some(32))) shouldBe Some(List(3, 32))
+  }
+
+
+  def fct(a: Int, b: Int): Int = a + b
 }
