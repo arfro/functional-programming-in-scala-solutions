@@ -44,4 +44,11 @@ class StreamSpec extends FlatSpec with Matchers {
     Stream(1).drop(1).takeWhile(_%2 != 0).toList shouldBe List()
   }
 
+  "Stream - forAll" should "return true for even check for 2 4 6" in {
+    Stream(2,4,6).forAll(_%2 == 0) shouldBe true
+  }
+
+  it should "return false for even check for 2 4 5" in {
+    Stream(2,4,5).forAll(_%2 == 0) shouldBe false
+  }
 }
