@@ -46,12 +46,5 @@ object Either {
     }
   }
 
-  def traverse[E, A, B](as: List[Either[E, A]])(f: A => Either[E, B]): Either[E, List[B]] = {
-    as match {
-      case Nil => Right(Nil)
-      case h :: t => (f(h) map2 traverse(t)(f))(_ :: _)
-    }
-  }
-
 
 }
